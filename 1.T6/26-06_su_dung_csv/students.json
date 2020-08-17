@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Nguy\u1ec5n V\u0103n A",
+    "studentNo": "10001",
+    "courses": [
+      {
+        "code": "C001",
+        "name": "Python C\u01a1 b\u1ea3n"
+      },
+      {
+        "code": "C002",
+        "name": "Javascript"
+      }
+    ]
+  },
+  {
+    "name": "Nguy\u1ec5n V\u0103n B",
+    "studentNo": "10002",
+    "courses": [
+      {
+        "code": "C001",
+        "name": "Python C\u01a1 b\u1ea3n"
+      },
+      {
+        "code": "C002",
+        "name": "Javascript"
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+<h3>Thêm mới sản phẩm</h3>
+<form method="POST">
+    <table>
+        {% csrf_token %}
+        <tr>
+            <td>Mã</td>
+            <td><input name = "code"></td>
+        </tr>
+        <tr>
+            <td>Tên</td>
+            <td><input name = "name"></td>
+        </tr>
+        <tr>
+            <td>Giá</td>
+            <td><input name = "price"></td>
+        </tr>
+    </table>
+    <button type = "submit">Thêm</button>
+</form>

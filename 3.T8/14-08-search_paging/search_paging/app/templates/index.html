@@ -1,0 +1,72 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<div class="container pt-3">
+    <form>
+    <div class ="row">
+        <div class = "col-4">
+            <label>Tên/mã sản phẩm: </label>
+            <input class = "form-control" name = 'keyword' value = "{{keyword}}" placeholder='Nhập tên/ Mã sản phẩm'>
+        </div>
+        <div class = "col-4">
+            <label>Giá: </label>
+            <select name = 'priceRange' class="form-control">
+                <option {% if priceRange == ''%} selected {% endif %} value = ''>--Tất cả</option>
+                <option {% if priceRange == '1'%} selected {% endif %} value = '1'>Dưới 10 triệu</option>
+                <option {% if priceRange == '2'%} selected {% endif %} value = '2'>Từ 10-15 triệu</option>
+                <option {% if priceRange == '3'%} selected {% endif %} value = '3'>Trên 15 triệu</option>
+            </select>
+        </div>
+        <div class = "col-4">
+            <label>&nbsp</label><br>
+            <button class="btn btn-primary" type='submit'>Tìm kiếm</button>
+        </div>
+    </div>
+
+
+
+<!-- Cho thẻ value = keyword để lưu lại keyword vừa nhập -->
+<table class= 'table table-bordered table-hover table-striped text-center mt-3'>
+    <thead>
+        <th style='width:5%;'>#</th>
+        <th style='width:35%;'>Mã</th>
+        <th style='width:35%;'>Tên</th>
+        <th style='width:15%;'>Giá</th>
+    </thead>
+    <tbody>
+        {% for p in productList %}
+        <tr>
+            <td>{{forloop.counter | add:start}}</td><!-- Sử dụng add:start để tăng số lượng thứ tự-->
+            <td>{{p.name}}</td>
+            <td>{{p.code}}</td>
+            <td>{{p.price}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href='?page=1&keyword={{keyword}}&priceRange={{priceRange}}'>First</a></li>
+            <li class="page-item"><a class="page-link" {% if prePage > 0 %} href='?page={{prePage}}&keyword={{keyword}}&priceRange={{priceRange}}'{% endif %}>Prev</a></li>
+            <li class="page-item"><a class="page-link" {% if nextPage <= num_page %} href='?page={{nextPage}}&keyword={{keyword}}&priceRange={{priceRange}}' {% endif %}>Next</a></li>
+            <li class="page-item"><a class="page-link" href='?page={{num_page}}&keyword={{keyword}}&priceRange={{priceRange}}'>Last</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- <div>
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href='?page=1&keyword={{keyword}}&priceRange={{priceRange}}'>&laquo</a></li>
+            <li class="page-item"><a class="page-link" {% if prePage > 0 %} href='?page={{prePage}}&keyword={{keyword}}&priceRange={{priceRange}}'{% endif %}>&laquo</a></li>
+            <li class="page-item"><a class="page-link" {% if nextPage <= num_page %} href='?page={{nextPage}}&keyword={{keyword}}&priceRange={{priceRange}}' {% endif %}>&raquo</a></li>
+            <li class="page-item"><a class="page-link" href='?page={{num_page}}&keyword={{keyword}}&priceRange={{priceRange}}'>&raquo</a></li>
+            <span class="sr-only">(current)</span>
+        </ul>
+    </nav>
+</div> -->
+    
+<small>
+    Tổng số bản ghi: {{total}}
+</small>
+</form>
+</div>

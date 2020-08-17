@@ -1,0 +1,42 @@
+<!-- <div id = "message_panel"></div>
+<button onclick="getMessage()">Get message</button>
+
+<script>
+    // Dùng thẻ async để lấy dữ liệu server với web service
+    async function getMessage(){
+        var resp = await fetch('/hello');
+        var result = await resp.json();
+        // alert(result.message) Thử lúc đầu
+        var messagePanel = document.getElementById('message_panel');
+        messagePanel.innerHTML += result.message + '<br>';
+    }
+</script> -->
+
+<input id = "keyword">
+<button onclick = "searchProduct()">Search</button>
+<div id ="product_panel"></div>
+
+<!-- B1: Thử với thông báo alert
+B2: Thử với thông báo độ dài alert(result.length);
+B3: Sử dụng cấu trúc để tạo thẻ p tự động với result.map(p => ()) 
+-->
+
+<script>
+    async function searchProduct(){
+        var keyword = document.getElementById('keyword').value;
+        var resp = await fetch('/search_product?keyword='+keyword);
+        var result = await resp.json();
+        // alert(result.length); 
+        // console.log(result);
+        // B3: Sử dụng cấu trúc để tạo biến chạy p như dạng với cấu trúc "result.map(p => ())"
+        // và lồng cấu trúc vào trong () 
+        // biến chạy p như kiểu list comprehension của python
+        var html = `<ul>` + result.map(p => (
+                                `<li>${p.name}</li>`
+                                            )
+                                      ).join('')
+                 + `</ul>`;
+        document.getElementById('product_panel').innerHTML = html;
+    }
+</script>
+

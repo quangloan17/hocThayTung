@@ -1,0 +1,12 @@
+<form method = "POST">
+    {% csrf_token %}
+    Name:<input name = 'name'><br>
+    Gender:
+    <select name = "gender">
+        <option value="M">Make</option>
+        <option value="F">Female</option>
+    </select>
+    </br>
+    <button type="submit">Ok</button>
+
+</form>

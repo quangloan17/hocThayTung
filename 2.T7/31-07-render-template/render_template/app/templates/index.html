@@ -1,0 +1,27 @@
+
+<table border="1" style = 'width:100%;'>
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Mã</td>
+            <td>Tên</td>
+            <td>Giá</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for p in productList %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{p.code}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}</td>
+            </tr>
+    {% endfor %}
+    {% if not productList  %}
+    <tr>
+        <td style="color:red;" colspan="4">Danh sách dữ liệu trống</td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+<a href = "{% url 'add-product' %}">Thêm sản phẩm</a> 

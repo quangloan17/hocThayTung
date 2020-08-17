@@ -1,0 +1,26 @@
+Trang chủ
+<table border = 1 style = "width:100%;">
+    <thead>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Mã</th>
+        <th>Giá</th>
+    </thead>
+    <tbody>
+    {% for p in productList %}
+        <tr>
+        <!-- Loop.index để đếm số vòng lặp và tạo số thứ tự -->
+            <td>{{loop.index}}</td>
+            <td>{{p.code}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}} Triệu</td>
+        </tr>
+    {% endfor %}
+    {% if not productList %}
+        <tr>
+            <td colspan="4">Không có dữ liệu nào</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+

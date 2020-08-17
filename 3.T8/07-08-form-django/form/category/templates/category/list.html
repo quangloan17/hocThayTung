@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class = "container-fluid">
+    <table class = "table table-bordered">
+            <thead>
+                <tr class = "text-center">
+                    <td>STT</td>
+                    <td>Mã</td>
+                    <td>Tên</td>
+                    <td>Sửa/ Xoá</td>
+                </tr>
+            </thead>
+        
+            {% for p in categoryList %}
+            <tr class = "text-center">
+                <td>{{forloop.counter}}</td>
+                <td>{{p.code}}</td>
+                <td>{{p.name}}</td>
+                <td><a class = "btn btn-sm btn-secondary" href = '{% url "update-category" p.id %}'>Sửa</a>
+                <a class = "btn btn-sm btn-danger"  href = 'javascript:deleteCategory({{p.id}})'>Xoá</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <a class = "btn btn-sm btn-primary"  href = '{% url "create-category" %}'>Thêm nhóm sản phẩm</a>
+</div>
+
+
+<script>
+    function deleteCategory(id){
+        if(confirm('Bạn có muốn xoá dữ liệu')){
+            location.href = '/cat/delete_category/' + id;
+        }
+    }
+    
+</script>

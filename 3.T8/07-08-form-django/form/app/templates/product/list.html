@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class = "container-fluid">    
+        <button type="button" class="btn btn-sm btn-primary">
+            Tổng giá trị SP:  <span class="badge badge-light">{{totalPrice}}</span>
+        </button>
+        <a class = "btn btn-sm btn-primary" href = '{% url "create-product" %}'>
+            Thêm mới sản phẩm
+        </a>
+    
+    <table class = "table table-bordered">
+            <thead>
+                <tr class = "text-center">
+                    <th style="width: 5%;">STT</td>
+                    <th style="width: 15%;">Tên</td>
+                    <th style="width: 15%;">Mã</td>
+                    <th style="width: 15%;">Giá</td>
+                    <th style="width: 15%;">Loại</td>
+                    <th style="width: 25%;">Ảnh</td>
+                    <th style="width: 15%;">Sửa/Xoá</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productList %}
+                <tr class = "text-center">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.code}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.price}}</td>
+                    <td>{{p.category.name}}</td>
+                    <td><img style = "width: 80px;" src="{{ p.image }}" /></td>
+                    <td><a class = "btn btn-sm btn-secondary" href = '{% url "update-product" p.id %}'>Sửa</a>
+                    <a class = "btn btn-sm btn-danger" href = "javascript:deleteProduct({{p.id}})">Xoá</a></td>
+                    
+                </tr>
+            </tbody>
+            {% endfor %}
+
+    </table>
+
+<script>
+    function deleteProduct(id){
+        if(confirm('Bạn có muốn xoá dữ liệu')){
+            location.href = '/delete_product/' + id;
+        }
+    }
+</script>

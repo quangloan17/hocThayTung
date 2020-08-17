@@ -1,0 +1,85 @@
+<body>
+    <input id='keyword' placeholder="Nhập mã/Tên sản phẩm">
+    <button onclick="searchProduct()">Tìm kiếm</button>
+    <div id="product_panel"></div>
+</body>
+<script>
+    async function searchProduct(){
+        var keyword = document.getElementById('keyword').value;
+        var resp = await fetch('/api/search_product?keyword=' + keyword);
+        var result = await resp.json();
+        // console.log(result);
+        var html = `<table border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>`
+                            + result.productList.map((p,index) => (
+                            `<tr>
+                                <td>${index+1}</td>
+                                <td>${p.code}</td>
+                                <td>${p.name}</td>
+                                <td>${p.price}</td>
+                            <tr>`
+                            )
+                            ).join('')
+                       + `</tbody>                    
+                    </table>`;
+        
+        document.getElementById('product_panel').innerHTML = html;
+    }
+</script>
+
+<!-- <body>
+    <input id='keyword' placeholder="Nhập mã/Tên sản phẩm">
+    <button onclick="searchProduct()">Tìm kiếm</button>
+    <div id="product_panel"></div>
+</body>
+<script>
+    async function searchProduct(){
+        var keyword = document.getElementById('keyword').value;
+        var resp = await fetch('/api/search_product?keyword=' + keyword);
+        var result = await resp.json();
+        // console.log(result);
+        var html = '<ul>';
+        for(var i = 0; i < result.productList.length;i++){
+            html+=`<li> ${result.productList[i].name}</li>`;
+        }
+        html += '</ul>';
+        document.getElementById('product_panel').innerHTML = html;
+    }
+</script> -->
+
+<!-- <body>
+    <div id = "message_panel"></div>
+    <button onclick="getMessage()">Get message</button>
+</body>
+
+<script>
+    async function getMessage(){
+        var resp = await fetch('/api/hello');
+        var result = await resp.json();
+        document.getElementById('message_panel').innerHTML = result.message
+        //console.log(result);
+        /*fetch('/api/hello')
+            .then(resp => resp.json())
+            .then(result => alert(result.message));*/
+    }
+</script> -->
+
+<!-- <body>
+    Comment: <input id="comment"><br>
+    <button onclick="addComment()">Comment</button>
+    <div id = "comment_panel"></div>
+</body>
+<script>
+    function addComment(){
+        var comment = document.getElementById('comment').value;
+        document.getElementById('comment_panel').innerHTML += comment + '<br>';
+    }
+</script> -->
